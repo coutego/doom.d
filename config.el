@@ -3,6 +3,9 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; Anything in extra-packages gets loaded first. Useful for developing
+;; packages
+(add-to-list 'load-path "~/.doom.d/extra-packages/")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -150,7 +153,6 @@
         #'evil-complete-next))
 
 ;; Extra packages
-(add-to-list 'load-path "~/.doom.d/extra-packages/")
 
 (use-package! lsp-tailwindcss
   :init (setq lsp-tailwindcss-add-on-mode t))

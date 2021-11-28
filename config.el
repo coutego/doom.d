@@ -187,17 +187,16 @@
 (use-package! ctg-win
   :config
   (map! :leader
-        :desc "Save window state"
-        "j w s"
-        #'ctg-win-save-window-state)
-  (map! :leader
-        :desc "Restore window state"
-        "j w r"
-        #'ctg-win-restore-window-state)
-  (map! :leader
-        :desc "Deleted window state"
-        "j w d"
-        #'ctg-win-delete-window-state))
+        (:prefix ("j w" . "windows")
+         :desc "Save window state"
+         "s"
+         #'ctg-win-save-window-state
+         :desc "Restore window state"
+         "r"
+         #'ctg-win-restore-window-state
+         :desc "Deleted window state"
+         "d"
+         #'ctg-win-delete-window-state)))
 
 ;; Load a local configuration file if it exists
 (load "~/.doom.d/local.el" t)

@@ -84,7 +84,7 @@
       :desc "Goto word" "j a" #'avy-goto-word-1)
 
 (map! :leader
-      :desc "Toggle window split" "j s" #'ctg-toggle-window-split)
+      :desc "Toggle window split" "j s" #'ctg-win-toggle-window-split)
 
 (map! :leader
       :desc "Change window" "w w" #'ace-window)
@@ -189,15 +189,15 @@
   (map! :leader
         :desc "Save window state"
         "j w s"
-        #'ctg-win/save-window-state)
+        #'ctg-win-save-window-state)
   (map! :leader
         :desc "Restore window state"
         "j w r"
-        #'ctg-win/restore-window-state)
+        #'ctg-win-restore-window-state)
   (map! :leader
         :desc "Deleted window state"
         "j w d"
-        #'ctg-win/delete-window-state))
+        #'ctg-win-delete-window-state))
 
 ;; Load a local configuration file if it exists
 (load "~/.doom.d/local.el" t)

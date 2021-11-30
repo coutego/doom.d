@@ -84,9 +84,6 @@
       :desc "Goto word" "j a" #'avy-goto-word-1)
 
 (map! :leader
-      :desc "Toggle window split" "j s" #'ctg-win-toggle-window-split)
-
-(map! :leader
       :desc "Change window" "w w" #'ace-window)
 
 (map! :leader
@@ -193,7 +190,6 @@
           '(defaults       ; should be included.
             pretty-parens  ; different paren styles for different modes.
             evil           ; If you use Evil.
-            lispy          ; If you use Lispy. With this extension, you should install Lispy and do not enable lispy-mode directly.
             paredit        ; Introduce some paredit commands.
             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
             smart-yank))   ; Yank behavior depend on mode.
@@ -204,18 +200,14 @@
     (add-hook 'lisp-mode-hook #'parinfer-mode)))
 
 (use-package! ctg-win
+  :after evil
   :config
   (map! :leader
         (:prefix ("j w" . "windows")
-         :desc "Save window state"
-         "s"
-         #'ctg-win-save-window-state
-         :desc "Restore window state"
-         "r"
-         #'ctg-win-restore-window-state
-         :desc "Deleted window state"
-         "d"
-         #'ctg-win-delete-window-state)))
+         :desc "Save window state" "s" #'ctg-win-save-window-state
+         :desc "Restore window state" "r" #'ctg-win-restore-window-state
+         :desc "Delete window state" "d" #'ctg-win-delete-window-state
+         :desc "Toggle window split" "o" #'ctg-win-toggle-window-split)))
 
 ;; Load a local configuration file if it exists
 (load "~/.doom.d/local.el" t)

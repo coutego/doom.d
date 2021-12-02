@@ -144,6 +144,15 @@
         "C-n"
         #'evil-complete-next))
 
+(use-package! company-quickhelp
+  :config
+  (map! :leader
+      :desc "Toggle company-quickhelp"
+      "h E"
+      #'company-quickhelp-mode)
+  (when (display-graphic-p)
+    (company-quickhelp-mode)))
+
 ;; Extra packages
 
 (use-package! lsp-tailwindcss
@@ -179,12 +188,12 @@
 (use-package! parinfer
   :bind
   (("C-," . parinfer-toggle-mode))
-  :config
+  :init
   (progn
     (setq parinfer-extensions
           '(defaults       ; should be included.
              pretty-parens  ; different paren styles for different modes.
-             evil           ; If you use Evil.
+             ;evil           ; If you use Evil.
              paredit        ; Introduce some paredit commands.
              smart-tab      ; C-b & C-f jump pos and smart shift with tab & S-tab.
              smart-yank))   ; Yank behavior depend on mode.

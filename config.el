@@ -153,7 +153,7 @@
   (when (display-graphic-p)
     (company-quickhelp-mode)))
 
-;; Extra packages
+;;; Extra packages
 
 (use-package! lsp-tailwindcss
   :init (setq lsp-tailwindcss-add-on-mode t))

@@ -104,11 +104,6 @@
       :localleader
       (:desc "cargo audit"    "bg" #'projectile-run-gdb))
 
-;; Set parinfer to be on indent mode by default
-(setq parinfer-auto-switch-indent-mode t)
-;;(add-to-list 'parinfer-extensions 'smart-yank)
-;;(add-to-list 'parinfer-extensions 'paredit)
-
 ;; Function and keybinding to open the current buffer in treemacs
 (defun ctg/open-current-in-treemacs ()
   (interactive)
@@ -184,15 +179,16 @@
 (use-package! parinfer
   :bind
   (("C-," . parinfer-toggle-mode))
-  :init
+  :config
   (progn
     (setq parinfer-extensions
           '(defaults       ; should be included.
-            pretty-parens  ; different paren styles for different modes.
-            evil           ; If you use Evil.
-            paredit        ; Introduce some paredit commands.
-            smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-            smart-yank))   ; Yank behavior depend on mode.
+             pretty-parens  ; different paren styles for different modes.
+             evil           ; If you use Evil.
+             paredit        ; Introduce some paredit commands.
+             smart-tab      ; C-b & C-f jump pos and smart shift with tab & S-tab.
+             smart-yank))   ; Yank behavior depend on mode.
+    (setq parinfer-auto-switch-indent-mode t)
     (add-hook 'clojure-mode-hook #'parinfer-mode)
     (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
     (add-hook 'common-lisp-mode-hook #'parinfer-mode)

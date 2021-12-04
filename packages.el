@@ -61,6 +61,7 @@
 (package! embark-consult)
 (package! ranger)
 (package! 2048-game)
+(package! xkcd)
 (package! parinfer)
 (package! company-quickhelp)
 (package! ctg-win :recipe (:host github :repo "coutego/ctg-win") :pin "604d17cf54154e89486567df2fc8d8a650f52a96")

@@ -210,6 +210,11 @@
 (use-package! ranger)
 
 (use-package! 2048-game)
+(use-package! xkcd
+  :config
+  (map! :leader
+        "j f x"
+        #'xkcd-get-latest))
 
 (use-package! parinfer
   :bind

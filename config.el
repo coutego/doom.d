@@ -120,6 +120,16 @@
   (treemacs-RET-action)
   (+treemacs/toggle))
 
+(map! :map evil-normal-state-map
+      :desc "Move to first non blank character"
+      "H"
+      #'evil-first-non-blank)
+
+(map! :map evil-normal-state-map
+      :desc "Move to last non blank character"
+      "L"
+      #'evil-last-non-blank)
+
 (map! :leader
       :desc "Open file and close treemacsin project sidebar and focus"
       "o c"
@@ -209,10 +219,10 @@
   :config
   (map! :leader
         (:prefix ("j w" . "windows")
-         :desc "Save window state" "s" #'ctg-win-save-window-state
-         :desc "Restore window state" "r" #'ctg-win-restore-window-state
-         :desc "Delete window state" "d" #'ctg-win-delete-window-state
-         :desc "Toggle window split" "o" #'ctg-win-toggle-window-split)))
+                 :desc "Save window state" "s" #'ctg-win-save-window-state
+                 :desc "Restore window state" "r" #'ctg-win-restore-window-state
+                 :desc "Delete window state" "d" #'ctg-win-delete-window-state
+                 :desc "Toggle window split" "o" #'ctg-win-toggle-window-split)))
 
 ;; Load a local configuration file if it exists
 (load "~/.doom.d/local.el" t)

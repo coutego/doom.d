@@ -120,10 +120,19 @@
   (treemacs-RET-action)
   (+treemacs/toggle))
 
+(defun ctg-evil-first-non-blank-or-first ()
+  (interactive)
+  (let ((p (point))
+        (pn))
+    (evil-first-non-blank)
+    (setq pn (point))
+    (when (equal p pn)
+      (evil-beginning-of-line))))
+
 (map! :map evil-normal-state-map
       :desc "Move to first non blank character"
       "H"
-      #'evil-first-non-blank)
+      #'ctg-evil-first-non-blank-or-first)
 
 (map! :map evil-normal-state-map
       :desc "Move to last non blank character"
@@ -218,11 +227,12 @@
   :after evil
   :config
   (map! :leader
-        (:prefix ("j w" . "windows")
-                 :desc "Save window state" "s" #'ctg-win-save-window-state
-                 :desc "Restore window state" "r" #'ctg-win-restore-window-state
-                 :desc "Delete window state" "d" #'ctg-win-delete-window-state
-                 :desc "Toggle window split" "o" #'ctg-win-toggle-window-split)))
+        (:prefix
+         ("j w" . "windows")
+         :desc "Save window state" "s" #'ctg-win-save-window-state
+         :desc "Restore window state" "r" #'ctg-win-restore-window-state
+         :desc "Delete window state" "d" #'ctg-win-delete-window-state
+         :desc "Toggle window split" "o" #'ctg-win-toggle-window-split)))
 
 ;; Load a local configuration file if it exists
 (load "~/.doom.d/local.el" t)

@@ -3,10 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-;; Anything in extra-packages gets loaded first. Useful for developing
-;; packages
-(add-to-list 'load-path "~/.doom.d/extra-packages/")
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Pedro Abelleira Seco"
@@ -58,19 +54,23 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Make the ',' work as in Spacemacs (act as a "major mode leader").
-;; It saves having to press SPC + m, replacing these two keystrokes by one
-;;(setq evil-snipe-override-evil-repeat-keys nil)
-;;(setq doom-localleader-key ",")
+;;;; local added code
 
+;; Anything in extra-packages gets loaded first. Useful for developing
+;; packages
+(add-to-list 'load-path "~/.doom.d/extra-packages/")
+
+;;; Keyboard shorcuts useful for an Spacemacs expat
+
+;; Double SPC is M-x
 (map! :leader
       :desc "M-x" "SPC" #'counsel-M-x)
 
+;; Same keybinfing than in SM
 (map! :leader
       :desc "Expand selection" "v" #'er/expand-region)
 
-;; Make the ',' work as in Spacemacs (act as a "major mode leader").
-;; It saves having to press SPC + m, replacing these two keystrokes by one
+;; Make the ',' work as in SM (act as a "major mode leader").
 (setq evil-snipe-override-evil-repeat-keys nil)
 (setq doom-localleader-key ",")
 (setq doom-localleader-alt-key "C-,")
@@ -79,7 +79,7 @@
 ;; Avy configuration
 (setq avy-all-windows t)
 
-;; Local bindings
+;; Some extra keybindings
 (map! :leader
       :desc "Goto word" "j a" #'avy-goto-word-1)
 
@@ -120,6 +120,23 @@
   (treemacs-RET-action)
   (+treemacs/toggle))
 
+(map! :leader
+      :desc "Open file and close treemacsin project sidebar and focus"
+      "o c"
+      #'ctg/goto-file-and-close-treemacs)
+
+(map! :map (evil-treemacs-state-map treemacs-mode-map)
+      "L"
+      :desc "Open file and close treemacsin project sidebar and focus"
+      #'ctg/goto-file-and-close-treemacs)
+
+(map! :leader
+      :desc "Other frame"
+      "w f"
+      #'other-frame)
+
+;; Functions + keybindings to reolace $ and ^ with
+;; easier to type and more convenient alternatives
 (defun ctg-evil-first-non-blank-or-zero ()
   (interactive)
   (let ((p (point))
@@ -147,21 +164,6 @@
       :desc "Move to last non blank character"
       "L"
       #'ctg-evil-last-non-blank-or-end)
-
-(map! :leader
-      :desc "Open file and close treemacsin project sidebar and focus"
-      "o c"
-      #'ctg/goto-file-and-close-treemacs)
-
-(map! :map (evil-treemacs-state-map treemacs-mode-map)
-      "L"
-      :desc "Open file and close treemacsin project sidebar and focus"
-      #'ctg/goto-file-and-close-treemacs)
-
-(map! :leader
-      :desc "Other frame"
-      "w f"
-      #'other-frame)
 
 (use-package! company
   :config

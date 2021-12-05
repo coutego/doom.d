@@ -242,6 +242,11 @@
   (map! :leader
         :desc "Cycle string case" "e c" #'string-inflection-all-cycle))
 
+(use-package! ivy-prescient
+  :after counsel
+  :config
+  (ivy-prescient-mode))
+
 (use-package! ctg-win
   :after evil
   :config

@@ -120,7 +120,7 @@
   (treemacs-RET-action)
   (+treemacs/toggle))
 
-(defun ctg-evil-first-non-blank-or-first ()
+(defun ctg-evil-first-non-blank-or-zero ()
   (interactive)
   (let ((p (point))
         (pn))
@@ -129,15 +129,24 @@
     (when (equal p pn)
       (evil-beginning-of-line))))
 
+(defun ctg-evil-last-non-blank-or-end ()
+  (interactive)
+  (let ((p (point))
+        (pn))
+    (evil-last-non-blank)
+    (setq pn (point))
+    (when (equal p pn)
+      (evil-end-of-line))))
+
 (map! :map evil-normal-state-map
       :desc "Move to first non blank character"
       "H"
-      #'ctg-evil-first-non-blank-or-first)
+      #'ctg-evil-first-non-blank-or-zero)
 
 (map! :map evil-normal-state-map
       :desc "Move to last non blank character"
       "L"
-      #'evil-last-non-blank)
+      #'ctg-evil-last-non-blank-or-end)
 
 (map! :leader
       :desc "Open file and close treemacsin project sidebar and focus"

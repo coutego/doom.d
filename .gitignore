@@ -3,3 +3,4 @@
 *.log
 tmp/
 extra-packages
+local.el

@@ -69,6 +69,7 @@
 ;; Same keybinfing than in SM
 (map! :leader
       :desc "Expand selection" "v" #'er/expand-region)
+(setq expand-region-contract-fast-key "V")
 
 ;; Make the ',' work as in SM (act as a "major mode leader").
 (setq evil-snipe-override-evil-repeat-keys nil)

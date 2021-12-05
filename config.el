@@ -229,11 +229,18 @@
              smart-tab      ; C-b & C-f jump pos and smart shift with tab & S-tab.
              smart-yank))   ; Yank behavior depend on mode.
     (setq parinfer-auto-switch-indent-mode t)))
+    ;; This are commented because of the 'evil-define-key' error when loading parinfer
     ;; (add-hook 'clojure-mode-hook #'parinfer-mode)
     ;; (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
     ;; (add-hook 'common-lisp-mode-hook #'parinfer-mode)
     ;; (add-hook 'scheme-mode-hook #'parinfer-mode)
     ;; (add-hook 'lisp-mode-hook #'parinfer-mode)))
+
+(use-package! evil-string-inflection
+  :after evil
+  :config
+  (map! :leader
+        :desc "Cycle string case" "e c" #'string-inflection-all-cycle))
 
 (use-package! ctg-win
   :after evil

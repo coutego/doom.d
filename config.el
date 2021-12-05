@@ -95,14 +95,12 @@
 (map! :leader
       :desc "Window resize/nav" "w e" #'+hydra/window-nav/body)
 
-;; FIXME: this is needed because of an eeror with the default Doom binding
-(map!
- :nv "gc"    #'comment-or-uncomment-region)
+(map! :leader
+      :desc "Other frame"
+      "w f"
+      #'other-frame)
 
-;; Add keybinding to debugger
-(map! :map rustic-mode-map
-      :localleader
-      (:desc "cargo audit"    "bg" #'projectile-run-gdb))
+(map! :nv "gc"    #'comment-or-uncomment-region)
 
 ;; Function and keybinding to open the current buffer in treemacs
 (defun ctg/open-current-in-treemacs ()
@@ -113,7 +111,7 @@
 (map! :leader
       :desc "Find file in project sidebar and focus" "o o" #'ctg/open-current-in-treemacs)
 
-;; Function and keybinding to open the current selected file
+;; Function and keybindings to open the current selected file
 ;; as a buffer and close treemeacs
 (defun ctg/goto-file-and-close-treemacs()
   (interactive)
@@ -130,11 +128,6 @@
       :desc "Open file and close treemacsin project sidebar and focus"
       #'ctg/goto-file-and-close-treemacs)
 
-(map! :leader
-      :desc "Other frame"
-      "w f"
-      #'other-frame)
-
 ;; Functions + keybindings to reolace $ and ^ with
 ;; easier to type and more convenient alternatives
 (defun ctg-evil-first-non-blank-or-zero ()
@@ -146,6 +139,11 @@
     (when (equal p pn)
       (evil-beginning-of-line))))
 
+(map! :map evil-normal-state-map
+      :desc "Move to first non blank character"
+      "H"
+      #'ctg-evil-first-non-blank-or-zero)
+
 (defun ctg-evil-last-non-blank-or-end ()
   (interactive)
   (let ((p (point))
@@ -156,14 +154,13 @@
       (evil-end-of-line))))
 
 (map! :map evil-normal-state-map
-      :desc "Move to first non blank character"
-      "H"
-      #'ctg-evil-first-non-blank-or-zero)
-
-(map! :map evil-normal-state-map
       :desc "Move to last non blank character"
       "L"
       #'ctg-evil-last-non-blank-or-end)
+
+;;; Extra packages
+;;; Packages used here must be included in packages.el
+;;; (or come from a module in init.el )
 
 (use-package! company
   :config
@@ -182,8 +179,6 @@
       #'company-quickhelp-mode)
   (when (display-graphic-p)
     (company-quickhelp-mode)))
-
-;;; Extra packages
 
 (use-package! lsp-tailwindcss
   :init (setq lsp-tailwindcss-add-on-mode t))
@@ -213,6 +208,7 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package! ranger)
+
 (use-package! 2048-game)
 
 (use-package! parinfer

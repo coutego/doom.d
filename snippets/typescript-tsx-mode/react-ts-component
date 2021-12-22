@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: React Typescript Component
+# key: cmpt
+# --
+
+const ${1:MyComponent}: Component = ({ ${2:children} }) => {
+  return (
+    <div className="${3:p-4}">$0</div>
+  )
+}

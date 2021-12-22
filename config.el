@@ -66,7 +66,7 @@
 (map! :leader
       :desc "M-x" "SPC" #'counsel-M-x)
 
-;; Same keybinfing than in SM
+;; Same keybindings for expand-region than in SM
 (map! :leader
       :desc "Expand selection" "v" #'er/expand-region)
 (setq expand-region-contract-fast-key "V")
@@ -247,6 +247,8 @@
   :after counsel
   :config
   (ivy-prescient-mode))
+
+;(use-package! ox-tailwind)
 
 (use-package! ctg-win
   :after evil

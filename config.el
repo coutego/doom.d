@@ -26,7 +26,7 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-opera-light)
 ;; (setq doom-theme 'doom-ephemeral)
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-nord)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -36,9 +36,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-
 ;; Here are some additional functions/macros that could help you configure Doom:
-;;
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package!' for configuring packages
 ;; - `after!' for running code after a package has loaded
@@ -184,6 +182,8 @@
 (use-package! lsp-tailwindcss
   :init (setq lsp-tailwindcss-add-on-mode t))
 
+(use-package org-ml)
+
 (use-package marginalia
   :ensure t
   :config
@@ -249,6 +249,8 @@
   (ivy-prescient-mode))
 
 ;(use-package! ox-tailwind)
+
+(use-package! ts)
 
 (use-package! ctg-win
   :after evil

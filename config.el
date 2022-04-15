@@ -76,7 +76,7 @@
 (setq doom-leader-alt-key "C-SPC")
 
 ;; Avy configuration
-(setq avy-all-windows t)
+(setq avy-all-windows 'all-frames)
 
 ;; Some extra keybindings
 (map! :leader

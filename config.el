@@ -263,5 +263,32 @@
          :desc "Delete window state" "d" #'ctg-win-delete-window-state
          :desc "Toggle window split" "o" #'ctg-win-toggle-window-split)))
 
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (progn
+      (setq org-roam-ui-sync-theme t
+            org-roam-ui-follow t
+            org-roam-ui-update-on-save t
+            org-roam-ui-open-on-start t)
+      (setq org-roam-dailies-directory "journals/")))
+
+(use-package! org-web-tools
+  :after org-roam
+  :config
+  (map! :leader
+        :desc "Insert webpage link from clipboard" "j h i" #'org-web-tools-insert-link-for-url)
+  (map! :leader
+        :desc "Insert webpage contents from clipboard" "j h I" #'org-web-tools-insert-web-page-as-entry)
+  (map! :leader
+        :desc "Attach webpage contents from clipboard" "j h a" #'org-web-tools-archive-attach))
+
 ;; Load a local configuration file if it exists
 (load "~/.doom.d/local.el" t)

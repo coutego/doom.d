@@ -71,3 +71,6 @@
 (package! org-ml)
 (package! ts)
 (package! ctg-win :recipe (:host github :repo "coutego/ctg-win") :pin "604d17cf54154e89486567df2fc8d8a650f52a96")
+
+(package! org-roam-ui)
+(package! org-web-tools)

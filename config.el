@@ -278,7 +278,23 @@
             org-roam-ui-follow t
             org-roam-ui-update-on-save t
             org-roam-ui-open-on-start t)
-      (setq org-roam-dailies-directory "journals/")))
+      (setq org-roam-dailies-directory "journals/")
+      (setq org-capture-templates
+            '(("r" "Anti-procrastinate: quickly put down an idea" entry
+               (file "~/org/roam/procrastination-pad.org")
+               "* TODO %?\n  %i\n  %a")
+              ("j" "Journal" entry (file+datetree "~/org/journal.org")
+               "* %?\nEntered on %U\n  %i\n  %a")))
+      (defun pas--open-procrastination-pad ()
+        (interactive)
+        (find-file (s-concat org-directory "roam/procrastination-pad.org")))
+      (defun pas--add-todo-to-procrastination-pad ()
+        (interactive)
+        (org-capture t "r"))
+      (map! :leader
+        :desc "Open Procrastination Pad" "j h P" #'pas--open-procrastination-pad)
+      (map! :leader
+        :desc "Add to Procrastination Pad" "j h p" #'pas--add-todo-to-procrastination-pad)))
 
 (use-package! org-web-tools
   :after org-roam

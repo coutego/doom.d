@@ -8,3 +8,6 @@
 
 (setq split-height-threshold nil)
 (setq split-width-threshold 160)
+
+;; TODO: add PATH (from customization file)
+;; TODO: use this file for customization (or a local machine one?)

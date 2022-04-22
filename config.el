@@ -307,12 +307,12 @@
         :desc "Attach webpage contents from clipboard" "j h a" #'org-web-tools-archive-attach))
 
 ;; Load a local configuration file if it exists
-(let* ((env-conf-file "~/.doom.d/env.conf")
+(let* ((env-conf-file "~/.doom.d/my-env")
        (env (if (f-exists-p env-conf-file)
                 (f-read-text env-conf-file)
               "default"))
        (env (s-trim env))
-       (file (s-concat "~/.doom.d/" env ".el")))
+       (file (s-concat "~/.doom.d/my-" env ".el")))
   (condition-case err
       (progn
         (load file)

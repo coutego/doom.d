@@ -316,5 +316,6 @@
   (condition-case err
       (progn
         (load file)
+        (setq custom-file file)
         (message "Loaded local config from '%s'" file))
     (user-error "Error loading %s: %s" file err)))
